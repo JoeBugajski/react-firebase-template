@@ -1,45 +1,12 @@
-+++
-title = "A Firebase in React Tutorial for Beginners [2019]"
-description = "A beginners tutorial to learn Firebase in React for business application with authentication, authorization and a real-time database. The tutorial gives you the perfect React Firebase boilerplate project ..."
-date = "2018-11-20T07:50:46+02:00"
-tags = ["React", "JavaScript"]
-categories = ["React", "JavaScript"]
-keywords = ["react firebase", "react firebase tutorial", "react authentication", "react firebase authentication tutorial", "react session", "react authorization", "react protected routes"]
-news_keywords = ["react firebase", "react firebase tutorial", "react authentication", "react firebase authentication tutorial", "react session", "react authorization", "react protected routes"]
-hashtag = "#ReactJs"
-card = "img/posts/complete-firebase-authentication-react-tutorial/banner_640.jpg"
-banner = "img/posts/complete-firebase-authentication-react-tutorial/banner.jpg"
-contribute = "complete-firebase-authentication-react-tutorial.md"
-headline = "A Firebase in React Tutorial for Beginners [2019]"
-
-summary = "A beginners tutorial to learn Firebase in React for business application with authentication, authorization and a real-time database. The tutorial gives you the perfect React Firebase boilerplate project."
-+++
-
-{{% sponsorship %}}
-
-{{% pin_it_image "react firebase" "img/posts/complete-firebase-authentication-react-tutorial/banner.jpg" "is-src-set" %}}
-
-{{% react-firebase-book %}}
+#Firebase tutorial with React Router
 
 This comprehensive tutorial walks you through a real-world application using React and Firebase. React is used to display applications in web browsers and to store local state in components, while Firebase is used for authentication, authorization, and managing a realtime database.
 
 After you've mastered the basics of React, I always recommend moving on to advanced topics like authentication, authorization, and connecting React applications to databases. These operations make up the fundamentals real business applications need. Don't worry about implementing the backend application that manages it all yourself, as Firebase provides the perfect alternative. I have seen real businesses go from zero to profitable with only React and Firebase as their tools, myself included. No backend application with Node.js was needed, and this tutorial was created to show you how.
 
-50% of this tutorial's outcome can seen {{% a_blank "here" "https://react-firebase-authentication.wieruch.com/" %}}. Security reasons prevent me from showing everything there, though the remaining material can be found in the book. To keep the guide updated, here is a list of the primary libraries and their versions used in this tutorial:
-
-* React 16.7
-* React Router 4
-* Firebase 4
-
-Please let me know if the tutorial needs any updates for others learning about the topic, and don't hesitate to point out improvements in the comments, or you can visit the article directly on GitHub to open issues or pull requests.
-
-{{% chapter_header "Requirements" "requirements" %}}
+###Requirements
 
 The requirements for this tutorial are a working [editor or IDE/terminal](https://www.robinwieruch.de/developer-setup/), and recent versions of {{% a_blank "node and npm" "https://nodejs.org/en/" %}}. You should have learned about React in the first place. [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/) is a free ebook that provides all the fundamentals of React. You will build a larger application in plain React, and transition from JavaScript ES5 to JavaScript ES6 and beyond. This tutorial will not dive into all the details taught in the ebook, so take the chance to grab your copy of it to learn those first.
-
-{{% package_box "The Road to learn React" "Build a Hacker News App along the way. No setup configuration. No tooling. No Redux. Plain React in 200+ pages of learning material. Pay what you want like <strong>50.000+ readers</strong>." "Get the Book" "img/page/cover.png" "https://roadtoreact.com/" %}}
-
-{{% chapter_header "Table of Contents" "toc" %}}
 
 * [React Application Setup: create-react-app](#react-application-setup)
 * [React Router for Firebase Auth](#react-router-setup)
