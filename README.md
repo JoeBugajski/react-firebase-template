@@ -1,12 +1,10 @@
-#Firebase tutorial with React Router
+# Firebase tutorial with React Router
 
 This comprehensive tutorial walks you through a real-world application using React and Firebase. React is used to display applications in web browsers and to store local state in components, while Firebase is used for authentication, authorization, and managing a realtime database.
 
 After you've mastered the basics of React, I always recommend moving on to advanced topics like authentication, authorization, and connecting React applications to databases. These operations make up the fundamentals real business applications need. Don't worry about implementing the backend application that manages it all yourself, as Firebase provides the perfect alternative. I have seen real businesses go from zero to profitable with only React and Firebase as their tools, myself included. No backend application with Node.js was needed, and this tutorial was created to show you how.
 
-###Requirements
-
-The requirements for this tutorial are a working [editor or IDE/terminal](https://www.robinwieruch.de/developer-setup/), and recent versions of {{% a_blank "node and npm" "https://nodejs.org/en/" %}}. You should have learned about React in the first place. [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/) is a free ebook that provides all the fundamentals of React. You will build a larger application in plain React, and transition from JavaScript ES5 to JavaScript ES6 and beyond. This tutorial will not dive into all the details taught in the ebook, so take the chance to grab your copy of it to learn those first.
+### Contents
 
 * [React Application Setup: create-react-app](#react-application-setup)
 * [React Router for Firebase Auth](#react-router-setup)
@@ -27,64 +25,60 @@ The requirements for this tutorial are a working [editor or IDE/terminal](https:
   * [Firebase Realtime Database in React](#react-firebase-realtime-database)
   * [Manage Users with Firebase's Realtime Database in React](#react-firebase-realtime-database-user-management)
 
-{{% chapter_header "React Application Setup: create-react-app" "react-application-setup" %}}
+## <a name='react-application-setup'></a> React Application Setup: create-react-app
 
 Let's get started with the React + Firebase application we are going to build together. The application should be the perfect starter project to realize your ideas. It should be possible to display information with React, to navigate from URL to URL with React Router and to store and retrieve data with Firebase. Also the application will have everything that's needed to register, login and logout users. In the end, you should be able to implement any feature on top of this application to create well-rounded React applications.
 
-If you lack information on how to setup your React development environment, checkout these setup guides for [MacOS](https://www.robinwieruch.de/react-js-macos-setup/) and [Windows](https://www.robinwieruch.de/react-js-windows-setup/). Now, there are two ways to begin with this application: either follow my guidance in this section; or find a starter project in this {{% a_blank "GitHub repository" "https://github.com/the-road-to-react-with-firebase/react-firebase-authentication-starter-kit" %}} and follow its installation instructions. This section will show how to set up the same project from scratch, whereas the starter project grants instant access without setting up the folder/file structure yourself.
-
-The application we are going to build with React and Firebase will be set up with Facebook's official React boilerplate project, called {{% a_blank "create-react-app" "https://github.com/facebookincubator/create-react-app" %}}. You can install it globally on the command line once, after which it becomes available whenever you need it.
-
-{{< highlight javascript >}}
+```
 npm install -g create-react-app
-{{< /highlight >}}
+```
 
 After the installation, set up your project with it on the command line whereas the name for the project is up to you. Afterward, navigate on the command line into the project:
 
-{{< highlight javascript >}}
+```
 create-react-app react-firebase-authentication
 cd react-firebase-authentication
-{{< /highlight >}}
+```
 
 Now you have the following command on your command line to start your application. You can start your application and visit it in the browser:
 
-{{< highlight javascript >}}
+```
 npm start
-{{< /highlight >}}
+```
 
 Now we'll set up the project for our needs. First, get rid of the files from the boilerplate React project, since we won't be using them. From the command line, head to your *src/* folder and execute it:
 
-{{< highlight javascript >}}
+```
 cd src
 rm App.js App.test.js App.css logo.svg
-{{< /highlight >}}
+```
 
 Second, create a *components/* folder in your application's *src/* folder on the command line. This is where all your components will be implemented. Also, the App component that you have removed in the previous step will be recreated here:
 
-{{< highlight javascript >}}
+```
 mkdir components
-{{< /highlight >}}
+```
 
 Create a dedicated folder for each component we will implement for this application. For the sake of readability, I split up the commands into multiple lines:
 
-{{< highlight javascript >}}
+```
 cd components
 mkdir Account Admin App Home Landing SignIn SignOut SignUp
 mkdir Navigation PasswordChange PasswordForget
 mkdir Session Firebase
-{{< /highlight >}}
+```
 
 In each folder, create an *index.js* file for the component. Navigate into a folder, create the file, and navigate out again. Repeat these steps for every component. You can choose to name your folders/files differently, but that's how I liked to do it for my applications.
 
-{{< highlight javascript >}}
+```
 cd App
 touch index.js
 cd ..
-{{< /highlight >}}
+```
 
 Next, implement a basic React component for each file you created. For the App component in *src/components/App/index.js*, it could look like the following:
 
-{{< highlight javascript >}}
+```
 import React from 'react';
 
 const App = () => (
@@ -94,11 +88,11 @@ const App = () => (
 );
 
 export default App;
-{{< /highlight >}}
+```
 
 Fix the relative path to the App component in the *src/index.js* file. Since you have moved the App component to the *src/components* folder, you need to add the */components* subpath to it.
 
-{{< highlight javascript "hl_lines=7" >}}
+```
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -110,38 +104,32 @@ import App from './components/App';
 ReactDOM.render(<App />, document.getElementById('root'));
 
 serviceWorker.unregister();
-{{< /highlight >}}
+```
 
 Then, create one more folder in your *src/* folder:
 
-{{< highlight javascript >}}
+```
 mkdir constants
-{{< /highlight >}}
+```
 
 The folder should be located next to *src/components/*. Move into *src/constants/*  and create two files for the application's routing and roles management later:
 
-{{< highlight javascript >}}
+```
 cd constants
 touch routes.js roles.js
 cd ..
-{{< /highlight >}}
+```
 
 The application with its folders and files is set up, and you can verify this by running it on the command line and accessing it through a browser. Check the starter project on GitHub I linked in the beginning of this section to verify whether you have set up everything properly.
 
-### Exercises:
 
-* Familiarize yourself with the folder structure of a project.
-* Optionally, introduce a test for your App component and test the application.
-* Optionally, introduce [CSS Modules](https://www.robinwieruch.de/create-react-app-css-modules/), [SASS](https://www.robinwieruch.de/create-react-app-with-sass-support/) or {{% a_blank "Styled Components" "https://www.styled-components.com" %}} and style the application.
-* Optionally, introduce [Git and keep track of your changes by having your project on GitHub](https://www.robinwieruch.de/git-essential-commands/).
+## <a name='React Router for Firebase Auth'></a> React Router for Firebase Auth
 
-{{% chapter_header "React Router for Firebase Auth" "react-router-setup" %}}
-
-Since we are building a larger application in the following sections, it would be great to have a couple of pages (e.g. landing page, account page, admin page, sign up page, sign in page) to split the application into multiple URLs (e.g. /landing, /account, /admin). These URLs or subpaths of a domain are called routes in a client-side web application. Let's implement the routing with {{% a_blank "React Router" "https://github.com/ReactTraining/react-router" %}} before we dive into Firebase for the realtime database and authentication/authorization. If you haven't used React Router before, it should be straightforward to pick up the basics throughout building this application.
+Since we are building a larger application in the following sections, it would be great to have a couple of pages (e.g. landing page, account page, admin page, sign up page, sign in page) to split the application into multiple URLs (e.g. /landing, /account, /admin). These URLs or subpaths of a domain are called routes in a client-side web application. Let's implement the routing with React Router before we dive into Firebase for the realtime database and authentication/authorization. If you haven't used React Router before, it should be straightforward to pick up the basics throughout building this application.
 
 The application should have multiple routes. For instance, a user should be able to visit a public landing page, and also use sign up and sign in pages to enter the application as an authenticated user. If a user is authenticated, it is possible to visit protected pages like account or admin pages whereas the latter is only accessible by authenticated users with an admin role. You can consolidate all the routes of your application in a well-defined *src/constants/routes.js* constants file:
 
-{{< highlight javascript >}}
+```
 export const LANDING = '/';
 export const SIGN_UP = '/signup';
 export const SIGN_IN = '/signin';
@@ -149,7 +137,7 @@ export const HOME = '/home';
 export const ACCOUNT = '/account';
 export const ADMIN = '/admin';
 export const PASSWORD_FORGET = '/pw-forget';
-{{< /highlight >}}
+```
 
 Each route represents a page in your application. For instance, the sign up page should be reachable in development mode via *http://localhost:3000/signup* and in production mode via *http://yourdomain/signup*.
 
